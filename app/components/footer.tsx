@@ -9,7 +9,7 @@
         <span className="ml-3 text-xl text-white">Kiraflakes</span>
         </a>
         <p className="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2026 AurelNabiel —
-        <a href="https://twitter.com/knyttneve" className="text-white ml-1" rel="noopener noreferrer" target="_blank">@Eikukun</a>
+        <a href="https://github.com/AurelNabiel" className="text-white ml-1" rel="noopener noreferrer" target="_blank">@Eikukun</a>
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
         <a className="text-white">

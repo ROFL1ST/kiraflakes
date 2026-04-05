@@ -2,6 +2,36 @@ import Image from "next/image";
 import Tama from "../assets/Tama.png";
 
 export default function Tnc() {
+    const tncItems = [
+  {
+    title: "General",
+    desc: "I own the right to decline any commission I don't feel comfortable with.",
+  },
+  {
+    title: "General",
+    desc: "Please credit me with either a link to my X (Twitter) @kiravflakes or Discord account if you use my work.",
+  },
+  {
+    title: "Revisions",
+    desc: "I accept three revisions at maximum. More than that would incur fees.",
+  },
+  {
+    title: "Revisions",
+    desc: "When needed, I may send you the work in progress very early on and ask for your feedback.",
+  },
+  {
+    title: "Deadlines and Delivery",
+    desc: "I prefer 100% payment upfront. I start work when at least 50% is paid.",
+  },
+  {
+    title: "Payment",
+    desc: "Payments are accepted via your preferred method.",
+  },
+  {
+    title: "Usage",
+    desc: "Artwork is for personal use unless agreed otherwise.",
+  },
+];
   return (
     <>
       <section id="Tnc" className="text-white body-font bg-[#E36464]">
