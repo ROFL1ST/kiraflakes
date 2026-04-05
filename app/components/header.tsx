@@ -9,8 +9,7 @@ import Tamalogo from "../assets/TamaIcon.jpg";
 const navigation = [
   { name: "Rules", href: "#rules" },
   { name: "Showcase ", href: "#showcase" },
-  { name: "Term & Condition", href: "#" },
-  { name: "Order here", href: "#" },
+  { name: "Term & Condition", href: "#Tnc" },
 ];
 
 export default function Header() {

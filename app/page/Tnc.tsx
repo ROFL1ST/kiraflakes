@@ -2,40 +2,15 @@ import Image from "next/image";
 import Tama from "../assets/Tama.png";
 
 export default function Tnc() {
-    const tncItems = [
-  {
-    title: "General",
-    desc: "I own the right to decline any commission I don't feel comfortable with.",
-  },
-  {
-    title: "General",
-    desc: "Please credit me with either a link to my X (Twitter) @kiravflakes or Discord account if you use my work.",
-  },
-  {
-    title: "Revisions",
-    desc: "I accept three revisions at maximum. More than that would incur fees.",
-  },
-  {
-    title: "Revisions",
-    desc: "When needed, I may send you the work in progress very early on and ask for your feedback.",
-  },
-  {
-    title: "Deadlines and Delivery",
-    desc: "I prefer 100% payment upfront. I start work when at least 50% is paid.",
-  },
-  {
-    title: "Payment",
-    desc: "Payments are accepted via your preferred method.",
-  },
-  {
-    title: "Usage",
-    desc: "Artwork is for personal use unless agreed otherwise.",
-  },
-];
   return (
     <>
       <section id="Tnc" className="text-white body-font bg-[#E36464]">
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
+          <div className="flex flex-col text-center w-full mb-20">
+            <h1 className="sm:text-3xl text-2xl font-bold title-font mb-4 text-white">
+              Term & Condition
+            </h1>
+          </div>
           <div className="flex flex-wrap w-full">
             <div className="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
               <div className="flex relative pb-12">
@@ -56,12 +31,16 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="flex-grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
                     General
                   </h2>
                   <p className="leading-relaxed">
                     I own the right to decline any commission I don&apos;t feel
                     comfortable with.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    Please credit me with either a link to my X (Twitter)
+                    @kiravflakes or Discord account if you use my work.
                   </p>
                 </div>
               </div>
@@ -83,12 +62,13 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="flex-grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
-                    General
+                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                    Refunds
                   </h2>
                   <p className="leading-relaxed">
-                    Please credit me with either a link to my X (Twitter)
-                    @kiravflakes or Discord account if you use my work.
+                    I do not accept refunds once work is started. Refund is only
+                    possible when I have not started work, of which I will
+                    notify when I start.
                   </p>
                 </div>
               </div>
@@ -111,12 +91,17 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="flex-grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
                     Revisions
                   </h2>
                   <p className="leading-relaxed">
                     I accept three revisions at maximum. More than that would
                     incur fees.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    When needed, I may send you the work in progress very early
+                    on and ask for your feedback. This would not count as a
+                    revision.
                   </p>
                 </div>
               </div>
@@ -139,13 +124,12 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="flex-grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
-                    Revisions
+                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                    Usage
                   </h2>
                   <p className="leading-relaxed">
-                    When needed, I may send you the work in progress very early
-                    on and ask for your feedback. This would not count as a
-                    revision.
+                    The commission is for personal use only. Commercial use fees
+                    are worth twice the price. NFT/AI training are not allowed.
                   </p>
                 </div>
               </div>
@@ -165,7 +149,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="flex-grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
                     Deadlines and Delivery
                   </h2>
                   <p className="leading-relaxed">
