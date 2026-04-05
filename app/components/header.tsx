@@ -10,6 +10,7 @@ const navigation = [
   { name: "Rules", href: "#rules" },
   { name: "Showcase ", href: "#showcase" },
   { name: "Term & Condition", href: "#Tnc" },
+  { name: "Pricing", href: "#pricing" },
 ];
 
 export default function Header() {
