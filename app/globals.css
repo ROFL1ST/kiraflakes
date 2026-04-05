@@ -16,6 +16,13 @@ html {
   --font-mono: var(--font-geist-mono);
 }
 
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Tamalogo from "../assets/TamaIcon.jpg";
 import {
@@ -11,6 +11,19 @@ import {
 
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false);
+  const text = "Kiraflakes";
+  const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayText(text.slice(0, i + 1));
+      i++;
+      if (i === text.length) clearInterval(interval);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -32,26 +45,60 @@ export default function Hero() {
             <div className="mx-auto max-w-2xl py-28 sm:py-40 lg:py-52">
               <div className="hidden sm:mb-8 sm:flex sm:justify-center"></div>
               <div>
-                <Image
-                  src={Tamalogo}
-                  alt="Tama Logo"
-                  width={120}
-                  height={120}
-                  className="mx-auto h-30 w-auto"
-                />
-              </div>
-              <div className="text-center">
-                <h1 className="text-5xl font-semibold tracking-tight text-balance text-[#E36464] sm:text-7xl">
-                  Kiraflakes
-                </h1>
-                <p className="mt-8 text-lg font-medium text-pretty text-[#E36464] sm:text-xl/8">
-                  hii! my name is kira (or tama) she/her | uni student! take a
-                  look around
-                </p>
-                <div className="mt-10 flex items-center justify-center gap-x-6">
+                <div className="text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  >
+                    {/* LOGO */}
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.2, duration: 0.6 }}
+                    >
+                      <Image
+                        src={Tamalogo}
+                        alt="Tama Logo"
+                        width={120}
+                        height={120}
+                        className="mx-auto h-30 w-auto"
+                      />
+                    </motion.div>
+
+                    {/* TEXT */}
+                    <div className="text-center mt-4">
+                      {/* TYPING TITLE */}
+                      <h1 className="text-5xl font-semibold tracking-tight bg-linear-to-r from-[#E36464] to-pink-400 bg-clip-text text-transparent sm:text-7xl">
+                        {displayText}
+                        <span className="ml-1 animate-blink bg-linear-to-r from-[#E36464] to-pink-400 bg-clip-text text-transparent ">
+                          |
+                        </span>
+                      </h1>
+
+                      {/* SUBTEXT */}
+                      <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 0.6 }}
+                        className="mt-8 text-lg font-medium text-[#E36464] sm:text-xl/8"
+                      >
+                        hii! my name is kira (or tama) she/her | uni student!
+                        take a look around
+                      </motion.p>
+                    </div>
+                  </motion.div>
                   {/* BUTTON */}
                   <div className="mt-10 flex justify-center">
                     <motion.button
+                      /* ENTRANCE ANIMATION */
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.8,
+                        ease: "easeInOut",
+                        delay: 1,
+                      }}
                       onClick={() => setIsOpen(true)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}

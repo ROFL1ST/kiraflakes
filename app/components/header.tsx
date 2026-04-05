@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Tamalogo from "../assets/TamaIcon.jpg";
 
@@ -15,12 +16,44 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [activeHash, setActiveHash] = useState("");
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveHash(window.location.hash);
+    };
+
+    handleHashChange(); // initial
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const handleScroll = () => {
+      let current = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+
+        if (window.scrollY >= sectionTop) {
+          current = "#" + section.getAttribute("id");
+        }
+      });
+
+      setActiveHash(current);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -63,16 +96,29 @@ export default function Header() {
               <Bars3Icon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm/6 font-semibold text-[#E36464]"
-              >
-                {item.name}
-              </a>
-            ))}
+          <div className="hidden lg:flex lg:gap-x-6">
+            {navigation.map((item) => {
+              const isActive = activeHash === item.href;
+
+              return (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  /* ANIMATION */
+                  whileHover={{ y: -2, scale: 1.05, transition: { duration: 0.1 } }}
+                  whileTap={{ scale: 0.95 }}
+                  /* STYLE */
+                  className={`px-4 py-2 rounded-full border text-sm font-semibold transition duration-200
+        ${
+          isActive && "shadow-md shadow-[#E36464]/50"
+            ? "bg-[#E36464] text-white border-[#E36464]"
+            : "text-[#E36464] border-[#E36464] hover:bg-[#E36464] hover:text-white"
+        }`}
+                >
+                  {item.name}
+                </motion.a>
+              );
+            })}
           </div>
         </nav>
         <Dialog
