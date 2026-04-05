@@ -1,36 +1,37 @@
 import Image from "next/image";
 import Tama from "../assets/Tama.png";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Rules() {
   const items = [
     {
       title: "I will draw.",
       desc: [
-        "Anime",
-        "Couples",
-        "Kemonomimi / Nekomimi",
-        "Fansart",
-        "Any Gender",
-        "Complex Character",
-        "Bingus",
-        "Rigby Cat",
+        { text: "Anime", type: "ok" },
+        { text: "Couples", type: "ok" },
+        { text: "Kemonomimi / Nekomimi", type: "ok" },
+        { text: "Fansart", type: "ok" },
+        { text: "Any Gender", type: "ok" },
+        { text: "Complex Character", type: "ok" },
+        { text: "Bingus", type: "ok" },
+        { text: "Rigby Cat", type: "ok" },
       ],
     },
     {
       title: "I will not draw.",
       desc: [
-        "nsfw",
-        "furry",
-        "mecha/heavy armor",
-        "muscular characters",
-        "elderly characters",
-        "real life people (i will simplify it)",
+        { text: "NSFW", type: "no" },
+        { text: "Furry", type: "no" },
+        { text: "Mecha / Heavy Armor", type: "no" },
+        { text: "Muscular Characters", type: "no" },
+        { text: "Elderly Characters", type: "no" },
+        { text: "Real Life People (will be simplified)", type: "no" },
       ],
     },
   ];
   return (
     <section id="rules">
-      <div className="overflow-hidden h-screen bg-[#E36464] py-24 sm:py-32">
+      <div className="overflow-hidden h-full bg-[#E36464] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pt-4 lg:pr-8">
@@ -46,21 +47,41 @@ export default function Rules() {
                   and recovering from an illness but i always try to finish the
                   comm whenever im free, so thank you for being patient{" "}
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 lg:py-8">
-                  {items.map((item, index) => (
-                    <div key={index} className="relative pl-9">
+                {/* WRAPPER */}
+                <div className="space-y-8">
+                  {items.map((item, idx) => (
+                    <div key={idx} className="space-y-3">
                       {/* TITLE */}
-                      <dt className="font-semibold text-white mb-1">
+                      <dt className="text-lg font-semibold text-white">
                         {item.title}
                       </dt>
 
                       {/* DESC LIST */}
-                      <div className="pl-5 space-y-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {item.desc.map((descItem, i) => (
-                          <dd key={i} className="text-white flex gap-2">
-                            <span className="text-white">{i + 1}.</span>
-                            {descItem}
-                          </dd>
+                          <div
+                            key={i}
+                            className={`flex items-center rounded-lg p-4 transition duration-200 hover:scale-[1.03] hover:shadow-md ${
+                              descItem.type === "no"
+                                ? "bg-red-50"
+                                : "bg-green-50"
+                            }`}
+                          >
+                            {/* ICON */}
+                            {descItem.type === "no" ? (
+                              <XCircleIcon className="w-6 h-6 text-red-500 mr-3" />
+                            ) : (
+                              <CheckCircleIcon className="w-6 h-6 text-green-500 mr-3" />
+                            )}
+
+                            {/* TEXT */}
+                            <span className="text-gray-800 text-sm">
+                              <span className="font-semibold mr-1">
+                                {i + 1}.
+                              </span>
+                              {descItem.text}
+                            </span>
+                          </div>
                         ))}
                       </div>
                     </div>

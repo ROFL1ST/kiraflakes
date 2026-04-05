@@ -1,3 +1,6 @@
+"use client";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import Tama from "../assets/Tama.png";
 
@@ -10,9 +13,9 @@ export default function showcase() {
             Showcase of my works!
           </h1>
           <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            havent heard of them man bun deep jianbing selfies heirloom.
+            A curated collection of my creative works, showcasing my passion for
+            design, detail, and visual storytelling. Each piece reflects my
+            exploration of ideas, techniques, and artistic expression..
           </p>
         </div>
         <div className="flex flex-wrap md:-m-2 -m-1">
