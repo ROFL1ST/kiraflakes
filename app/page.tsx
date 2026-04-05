@@ -7,6 +7,7 @@ import Rules from "./page/rules";
 import Showcase from "./page/showcase";
 import Tnc from "./page/Tnc";
 import Footer from "./components/footer";
+import Pricing from "./page/Pricing";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
     <Rules />
     <Showcase />
     <Tnc />
+    <Pricing />
     <Footer />
 
     
