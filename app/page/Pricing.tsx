@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 export default function Pricing() {
   return (
     <>
-      <motion.section
+      {/* <motion.section
         id="pricing"
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
         className="text-gray-600 bg-white body-font"
-      >
-        {/* <section
+      > */}
+        <section
           id="pricing"
           className="text-gray-600 body-font bg-white overflow-hidden"
-        > */}
+        >
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
@@ -315,8 +315,8 @@ export default function Pricing() {
             </div>
           </div>
         </div>
-        {/* </section> */}
-      </motion.section>
+        </section>
+      {/* </motion.section> */}
     </>
   );
 }

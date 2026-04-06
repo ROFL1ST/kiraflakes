@@ -6,15 +6,15 @@ import Tama from "../assets/Tama.png";
 
 export default function showcase() {
   return (
-    <motion.section
-      id="showcase"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-      viewport={{ once: true }}
-      className="text-gray-600 bg-white body-font"
-    >
-      {/* <section id="showcase" className="text-gray-600 bg-white body-font"> */}
+    // <motion.section
+    //   id="showcase"
+    //   initial={{ opacity: 0, y: 50 }}
+    //   whileInView={{ opacity: 1, y: 0 }}
+    //   transition={{ duration: 0.8, ease: "easeInOut" }}
+    //   viewport={{ once: true }}
+    //   className="text-gray-600 bg-white body-font"
+    // >
+      <section id="showcase" className="text-gray-600 bg-white body-font"> 
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
           <div className="flex w-full mb-20 flex-wrap">
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">
@@ -87,7 +87,7 @@ export default function showcase() {
             </div>
           </div>
         </div>
-      {/* </section> */}
-    </motion.section>
+      </section>
+    // </motion.section>
   );
 }

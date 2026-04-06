@@ -5,15 +5,15 @@ import Tama from "../assets/Tama.png";
 export default function Tnc() {
   return (
     <>
-      <motion.section
+      {/* <motion.section
         id="Tnc"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
         className="text-white bg-[#E36464] body-font"
-      >
-        {/* <section id="Tnc" className="text-white body-font bg-[#E36464]"> */}
+      > */}
+        <section id="Tnc" className="text-white body-font bg-[#E36464]">
           <div className="container px-5 py-24 mx-auto flex flex-wrap">
             <div className="flex flex-col text-center w-full mb-20">
               <h1 className="sm:text-3xl text-2xl font-bold title-font mb-4 text-white">
@@ -180,8 +180,8 @@ export default function Tnc() {
               />
             </div>
           </div>
-        {/* </section> */}
-      </motion.section>
+        </section>
+      {/* </motion.section> */}
     </>
   );
 }

@@ -27,14 +27,14 @@ export default function Hero() {
 
   return (
     <>
-      <motion.section
+      {/* <motion.section
         id="homepage"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="text-gray-600 bg-white body-font"
-      >
-        {/* <section id="Hero"> */}
+      > */}
+        <section id="Hero">
           <div className="bg-white h-screen">
             <div className="relative isolate px-6 pt-5 lg:px-8">
               <div
@@ -187,8 +187,8 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        {/* </section> */}
-      </motion.section>
+        </section>
+      {/* </motion.section> */}
     </>
   );
 }

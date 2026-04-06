@@ -31,15 +31,15 @@ export default function Rules() {
     },
   ];
   return (
-    <motion.section
-      id="rules"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-      viewport={{ once: true }}
-      className="text-gray-600 bg-white body-font"
-    >
-      {/* <section id="rules"> */}
+    // <motion.section
+    //   id="rules"
+    //   initial={{ opacity: 0, y: 50 }}
+    //   whileInView={{ opacity: 1, y: 0 }}
+    //   transition={{ duration: 0.8, ease: "easeInOut" }}
+    //   viewport={{ once: true }}
+    //   className="text-gray-600 bg-white body-font"
+    // >
+      <section id="rules"> 
         <div className="overflow-hidden h-full bg-[#E36464] py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
@@ -109,7 +109,7 @@ export default function Rules() {
             </div>
           </div>
         </div>
-      {/* </section> */}
-    </motion.section>
+      </section>
+    // </motion.section>
   );
 }
