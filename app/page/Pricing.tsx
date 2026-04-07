@@ -11,10 +11,10 @@ export default function Pricing() {
         viewport={{ once: true }}
         className="text-gray-600 bg-white body-font"
       > */}
-        <section
-          id="pricing"
-          className="text-gray-600 body-font bg-white overflow-hidden"
-        >
+      <section
+        id="pricing"
+        className="text-gray-600 body-font bg-white overflow-hidden"
+      >
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
@@ -194,8 +194,11 @@ export default function Pricing() {
                   </svg>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  a full body of your character with 1-2 props and a full body
-                  chibi of ur chara !!
+                  i love drawing chibis and i can make one for you!!
+                </p>
+                <p className="text-xs text-gray-500 mt-3">
+                  Chibi Comm Info full body coloured sketch will range from
+                  $5-10!
                 </p>
               </div>
             </div>
@@ -305,17 +308,14 @@ export default function Pricing() {
                   </svg>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  i love drawing chibis and i can make one for you!!
-                </p>
-                <p className="text-xs text-gray-500 mt-3">
-                  Chibi Comm Info full body coloured sketch will range from
-                  $5-10!
+                   a full body of your character with 1-2 props and a full body
+                  chibi of ur chara !!
                 </p>
               </div>
             </div>
           </div>
         </div>
-        </section>
+      </section>
       {/* </motion.section> */}
     </>
   );
