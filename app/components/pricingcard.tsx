@@ -16,6 +16,7 @@ type PricingCardProps = {
   note?: string;
   buttonColor?: string;
   popular?: boolean;
+  onClick?: () => void;
 };
 
 const imageVariants = {
@@ -36,6 +37,7 @@ export default function PricingCard({
   note,
   buttonColor = "#E36464",
   popular = false,
+  onClick,
 }: PricingCardProps) {
   return (
     <div className="p-4 xl:w-1/3 md:w-1/2 w-full">
@@ -100,8 +102,8 @@ export default function PricingCard({
             <Image
               src={image}
               alt="character"
-              width={180}
-              height={240}
+              width={120}
+              height={120}
               className="object-contain drop-shadow-xl rounded-2xl"
             />
           </motion.div>
@@ -109,8 +111,9 @@ export default function PricingCard({
 
         {/* BUTTON ALWAYS BOTTOM */}
         <button
+          onClick={onClick}
           style={{ backgroundColor: buttonColor }}
-          className="mt-6 w-full z-10 text-white py-2 rounded hover:opacity-90 transition"
+          className="mt-6 w-full text-white py-2 rounded hover:opacity-90 transition"
         >
           See More →
         </button>

@@ -10,7 +10,6 @@ import Chibi1 from "../assets/Chibi.png";
 import Chibi2 from "../assets/Chibi1.png";
 import Headshot from "../assets/Headshotchibi.png";
 import Sketch from "../assets/ColouredSketch.png";
-import Sheet from "../assets/sheet.jpg"
 
 
 export default function Showcase() {
