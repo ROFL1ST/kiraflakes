@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import PricingCard from "../components/pricingcard";
 import Sheet from "../assets/sheet.jpg";
-import Ilus from "../assets/ilustration.png";
 import Chibi from "../assets/Chibi.png";
 import Chibi1 from "../assets/Chibi1.png";
 import Chibi3 from "../assets/Chibi3.png";
@@ -23,7 +22,7 @@ export default function Pricing() {
   const [index, setIndex] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [images, setImages] = useState<(StaticImageData | string)[]>([]);
-  const gallery1 = [Ilus, Ils1, Ils2, CSK1, CSK2, CSK3];
+  const gallery1 = [ Ils1, Ils2, CSK1, CSK2, CSK3];
   const gallery2 = [Chibi, Chibi1, Chibi2, Chibi3, Chibi4, Chibi5, Chibi6];
   const gallery3 = [Sheet,];
   const openGallery = (gallery: (StaticImageData | string)[]) => {
