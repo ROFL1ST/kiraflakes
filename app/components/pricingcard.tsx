@@ -100,9 +100,9 @@ export default function PricingCard({
             <Image
               src={image}
               alt="character"
-              width={140}
+              width={180}
               height={240}
-              className="object-contain drop-shadow-xl"
+              className="object-contain drop-shadow-xl rounded-2xl"
             />
           </motion.div>
         </div>

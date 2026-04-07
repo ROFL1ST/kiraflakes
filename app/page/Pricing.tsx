@@ -60,7 +60,7 @@ export default function Pricing() {
               subtitle="CHARACTER SHEET"
               description="a full body of your character with 1-2 props and a full body chibi of ur chara !!"
               image={Tama}
-              buttonColor="#9CA3AF"
+              // buttonColor="#9CA3AF"
               prices={[
                 { label: "Local", price: "250k" },
                 { label: "International", price: "$50" },

@@ -1,11 +1,24 @@
 "use client";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {useState } from "react";
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 import Tama from "../assets/Tama.png";
+import Bust1 from "../assets/bustup1.png";
+import Bust2 from "../assets/bustup2.png";
+import Chibi1 from "../assets/Chibi.png";
+import Chibi2 from "../assets/Chibi1.png";
+import Headshot from "../assets/Headshotchibi.png";
+import Sketch from "../assets/ColouredSketch.png";
+import Sheet from "../assets/sheet.jpg"
 
-export default function showcase() {
+
+export default function Showcase() {
+  const [selectedImage, setSelectedImage] = useState<StaticImageData | null>(null);
+
+
   return (
+    
     // <motion.section
     //   id="showcase"
     //   initial={{ opacity: 0, y: 50 }}
@@ -14,80 +27,141 @@ export default function showcase() {
     //   viewport={{ once: true }}
     //   className="text-gray-600 bg-white body-font"
     // >
-      <section id="showcase" className="text-gray-600 bg-white body-font"> 
-        <div className="container px-5 py-24 mx-auto flex flex-wrap">
-          <div className="flex w-full mb-20 flex-wrap">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">
-              Showcase of my works!
-            </h1>
-            <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
-              A curated collection of my creative works, showcasing my passion
-              for design, detail, and visual storytelling. Each piece reflects
-              my exploration of ideas, techniques, and artistic expression..
-            </p>
-          </div>
-          <div className="flex flex-wrap md:-m-2 -m-1">
-            <div className="flex flex-wrap w-1/2">
-              <div className="md:p-2 p-1 w-1/2">
+    <section id="showcase" className="text-gray-600 bg-white body-font">
+      {/* MODAL */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
+            {/* IMAGE */}
+            <motion.img
+              src={selectedImage.src}
+              alt="preview"
+              className="max-w-[90%] max-h-[90%] rounded-lg shadow-xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()} // biar tidak close kalau klik gambar
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* MODAL */}
+      <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <div className="flex w-full mb-20 flex-wrap">
+          <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">
+            Showcase of my works!
+          </h1>
+          <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
+            A curated collection of my creative works, showcasing my passion for
+            design, detail, and visual storytelling. Each piece reflects my
+            exploration of ideas, techniques, and artistic expression..
+          </p>
+        </div>
+        <div className="flex flex-wrap md:-m-2 -m-1">
+          <div className="flex flex-wrap w-1/2">
+            <div className="md:p-2 p-1 w-1/2">
+             <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Chibi1)}
+              >
                 <Image
                   width={600}
                   height={600}
-                  src={Tama}
+                  src={Chibi1}
                   alt="gallery"
-                  className="w-full object-cover h-full object-center block"
+                  className="w-full object-cover h-full object-center block rounded-lg"
                 />
-              </div>
-              <div className="md:p-2 p-1 w-1/2">
-                <Image
-                  width={600}
-                  height={600}
-                  src={Tama}
-                  alt="gallery"
-                  className="w-full object-cover h-full object-center block"
-                />
-              </div>
-              <div className="md:p-2 p-1 w-full">
-                <Image
-                  width={600}
-                  height={600}
-                  src={Tama}
-                  alt="gallery"
-                  className="w-full h-full object-cover object-center block"
-                />
-              </div>
+              </motion.div>
             </div>
-            <div className="flex flex-wrap w-1/2">
-              <div className="md:p-2 p-1 w-full">
+            <div className="md:p-2 p-1 w-1/2">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Bust1)}
+              >
                 <Image
                   width={600}
                   height={600}
-                  src={Tama}
+                  src={Bust1}
+                  alt="gallery"
+                  className="w-full object-cover h-full object-center block rounded-lg"
+                />
+              </motion.div>
+            </div>
+            <div className="md:p-2 p-1 w-full">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Headshot)}
+              >
+                <Image
+                  width={600}
+                  height={600}
+                  src={Headshot}
                   alt="gallery"
                   className="w-full h-full object-cover object-center block"
                 />
-              </div>
-              <div className="md:p-2 p-1 w-1/2">
+              </motion.div>
+            </div>
+          </div>
+          <div className="flex flex-wrap w-1/2">
+            <div className="md:p-2 p-1 w-full">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Bust2)}
+              >
                 <Image
                   width={600}
                   height={600}
-                  src={Tama}
+                  src={Bust2}
                   alt="gallery"
-                  className="w-full object-cover h-full object-center block"
+                  className="w-full object-cover h-full object-center block rounded-lg"
                 />
-              </div>
-              <div className="md:p-2 p-1 w-1/2">
+              </motion.div>
+            </div>
+            <div className="md:p-2 p-1 w-1/2">
+             <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Sketch)}
+              >
                 <Image
                   width={600}
                   height={600}
-                  src={Tama}
+                  src={Sketch}
                   alt="gallery"
-                  className="w-full object-cover h-full object-center block"
+                  className="w-full object-cover h-full object-center block rounded-lg"
                 />
-              </div>
+              </motion.div>
+            </div>
+            <div className="md:p-2 p-1 w-1/2">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="cursor-pointer"
+                onClick={() => setSelectedImage(Chibi2)}
+              >
+                <Image
+                  width={600}
+                  height={600}
+                  src={Chibi2}
+                  alt="gallery"
+                  className="w-full object-cover h-full object-center block rounded-lg"
+                />
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     // </motion.section>
   );
 }
