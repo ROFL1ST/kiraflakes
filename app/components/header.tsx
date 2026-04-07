@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import Tamalogo from "../assets/TamaIcon.jpg";
 
@@ -13,6 +13,54 @@ const navigation = [
   { name: "Term & Condition", href: "#Tnc" },
   { name: "Pricing", href: "#pricing" },
 ];
+
+const sidebarVariants: Variants = {
+  open: {
+    clipPath: "circle(150% at 100% 0)",
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 40,
+    },
+  },
+  closed: {
+    clipPath: "circle(0% at 100% 0)",
+    opacity: 0,
+    transition: {
+      type: "spring",
+      stiffness: 40,
+      damping: 16,
+    },
+  },
+};
+
+const containerVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
+  },
+  closed: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  open: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.2 },
+  },
+  closed: {
+    opacity: 0,
+    x: -20,
+    transition: { duration: 0.2 },
+  },
+};
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -105,7 +153,11 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   /* ANIMATION */
-                  whileHover={{ y: -2, scale: 1.05, transition: { duration: 0.1 } }}
+                  whileHover={{
+                    y: -2,
+                    scale: 1.05,
+                    transition: { duration: 0.1 },
+                  }}
                   whileTap={{ scale: 0.95 }}
                   /* STYLE */
                   className={`px-4 py-2 rounded-full border text-sm font-semibold transition duration-200
@@ -121,50 +173,77 @@ export default function Header() {
             })}
           </div>
         </nav>
-        <Dialog
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-          className="lg:hidden"
-        >
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Kiraflakes</span>
-                <Image
-                  alt=""
-                  src={Tamalogo}
-                  width={80}
-                  height={80}
-                  className="h-8 w-auto"
-                />
-              </a>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-[#E36464]"
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <Dialog
+              open={mobileMenuOpen}
+              onClose={setMobileMenuOpen}
+              className="lg:hidden"
+            >
+              {/* BACKDROP */}
+              <motion.div
+                className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+
+              {/* SIDEBAR */}
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={sidebarVariants}
+                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm"
               >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-white/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-[#E36464] hover:bg-[#E36464]/10"
+                <DialogPanel className="h-full bg-white p-6 shadow-xl">
+                  {/* HEADER */}
+                  <div className="flex items-center justify-between">
+                    <Image src={Tamalogo} alt="logo" width={80} height={80} />
+
+                    <button
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="p-2 text-[#E36464]"
                     >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
+                      <XMarkIcon className="w-6 h-6" />
+                    </button>
+                  </div>
+
+                  {/* MENU */}
+                  <motion.div
+                    className="mt-8 space-y-3"
+                    variants={containerVariants}
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                  >
+                    {navigation.map((item) => (
+                      <motion.a
+                        key={item.name}
+                        href={item.href}
+                        /* CLICK → CLOSE DIALOG */
+                        onClick={() => setMobileMenuOpen(false)}
+                        /* HOVER ANIMATION */
+                        whileHover={{
+                          scale: 1.05,
+                          x: 8,
+                          backgroundColor: "#E36464",
+                          color: "#ffffff",
+                        }}
+                        /* CLICK ANIMATION */
+                        whileTap={{ scale: 0.95 }}
+                        /* STYLE */
+                        className="block rounded-lg px-4 py-3 text-base font-semibold text-[#E36464] border border-[#E36464]/30 transition"
+                      >
+                        {item.name}
+                      </motion.a>
+                    ))}
+                  </motion.div>
+                </DialogPanel>
+              </motion.div>
+            </Dialog>
+          )}
+        </AnimatePresence>
       </header>
     </div>
   );
