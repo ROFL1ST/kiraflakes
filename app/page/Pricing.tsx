@@ -15,16 +15,15 @@ import CSK3 from "../assets/ColouredSketch2.png";
 import Ils1 from "../assets/ilustration.png";
 import Ils2 from "../assets/Illustration3x.png";
 
-
 import { useState } from "react";
 
 export default function Pricing() {
   const [index, setIndex] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [images, setImages] = useState<(StaticImageData | string)[]>([]);
-  const gallery1 = [ Ils1, Ils2, CSK1, CSK2, CSK3];
+  const gallery1 = [Ils1, Ils2, CSK1, CSK2, CSK3];
   const gallery2 = [Chibi, Chibi1, Chibi2, Chibi3, Chibi4, Chibi5, Chibi6];
-  const gallery3 = [Sheet,];
+  const gallery3 = [Sheet];
   const openGallery = (gallery: (StaticImageData | string)[]) => {
     setImages(gallery);
     setIndex(0);
@@ -123,7 +122,7 @@ export default function Pricing() {
               title="Illustration Showcase"
               subtitle="ILLUSTRATION"
               description="I will draw your character >:3"
-              image={Ilus}
+              image={Ils1}
               note="Background price depends on complexity."
               prices={[
                 { label: "Headshot", price: "65k / $15" },
