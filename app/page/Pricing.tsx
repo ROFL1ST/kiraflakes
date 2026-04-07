@@ -58,7 +58,7 @@ export default function Pricing() {
             <PricingCard
               title="Illustration Showcase"
               subtitle="CHARACTER SHEET"
-              description="Full body + props + chibi version"
+              description="a full body of your character with 1-2 props and a full body chibi of ur chara !!"
               image={Tama}
               buttonColor="#9CA3AF"
               prices={[
