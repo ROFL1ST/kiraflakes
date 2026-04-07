@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
+import PricingCard from "../components/pricingcard";
+import Tama from "../assets/Tama.png";
 
 export default function Pricing() {
   return (
@@ -26,293 +29,43 @@ export default function Pricing() {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <div className="p-4 xl:w-1/3 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-                <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                  ILLUSTRATION
-                </h2>
-                <h1 className="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
-                  ?
-                </h1>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Vexillologist pitchfork
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Tumeric plaid portland
-                </p>
-                <p className="flex items-center text-gray-600 mb-6">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Mixtape chillwave tumeric
-                </p>
-                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                  See More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 ml-auto"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-                <p className="text-xs text-gray-500 mt-3">
-                  BG Info additional background price depends on complexity.
-                </p>
-              </div>
-            </div>
-            <div className="p-4 xl:w-1/3 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-indigo-500 flex flex-col relative overflow-hidden">
-                <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
-                  POPULAR
-                </span>
-                <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                  CHIBIS
-                </h2>
-                <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-                  <span>?</span>
-                  <span className="text-lg ml-1 font-normal text-gray-500">
-                    foto
-                  </span>
-                </h1>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Vexillologist pitchfork
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Tumeric plaid portland
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Hexagon neutra unicorn
-                </p>
-                <p className="flex items-center text-gray-600 mb-6">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Mixtape chillwave tumeric
-                </p>
-                <button className="flex items-center mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
-                  See More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 ml-auto"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-                <p className="text-xs text-gray-500 mt-3">
-                  i love drawing chibis and i can make one for you!!
-                </p>
-                <p className="text-xs text-gray-500 mt-3">
-                  Chibi Comm Info full body coloured sketch will range from
-                  $5-10!
-                </p>
-              </div>
-            </div>
-            <div className="p-4 xl:w-1/3 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-                <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                  CHARACTER SHEET
-                </h2>
-                <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-                  <span>?</span>
-                  <span className="text-lg ml-1 font-normal text-gray-500">
-                    foto
-                  </span>
-                </h1>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Vexillologist pitchfork
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Tumeric plaid portland
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Hexagon neutra unicorn
-                </p>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Vexillologist pitchfork
-                </p>
-                <p className="flex items-center text-gray-600 mb-6">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.5"
-                      className="w-3 h-3"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </span>
-                  Mixtape chillwave tumeric
-                </p>
-                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                  See More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 ml-auto"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-                <p className="text-xs text-gray-500 mt-3">
-                   a full body of your character with 1-2 props and a full body
-                  chibi of ur chara !!
-                </p>
-              </div>
-            </div>
+            <PricingCard
+              title="Illustration Showcase"
+              subtitle="ILLUSTRATION"
+              description="I will draw your character >:3"
+              image={Tama}
+              note="Background price depends on complexity."
+              prices={[
+                { label: "Headshot", price: "65k / $15" },
+                { label: "Bust-up", price: "100k / $20" },
+                { label: "Half Body", price: "135k / $23" },
+                { label: "Thigh-up", price: "175k / $35" },
+                { label: "Full Body", price: "200k / $40" },
+              ]}
+            />
+            <PricingCard
+              title="Illustration Showcase"
+              subtitle="CHIBIS!!!!!"
+              description="I love drawing chibis and I can make one for you!!"
+              image={Tama}
+              popular
+              buttonColor="#6366F1"
+              prices={[
+                { label: "Bust-up", price: "40k / $10" },
+                { label: "Full Body", price: "65k / $15" },
+              ]}
+            />
+            <PricingCard
+              title="Illustration Showcase"
+              subtitle="CHARACTER SHEET"
+              description="Full body + props + chibi version"
+              image={Tama}
+              buttonColor="#9CA3AF"
+              prices={[
+                { label: "Local", price: "250k" },
+                { label: "International", price: "$50" },
+              ]}
+            />
           </div>
         </div>
       </section>
