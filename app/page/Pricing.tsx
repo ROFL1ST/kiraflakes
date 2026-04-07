@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import PricingCard from "../components/pricingcard";
-import Tama from "../assets/Tama.png";
 import Sheet from "../assets/sheet.jpg";
 import Ilus from "../assets/ilustration.png";
 import Chibi from "../assets/Chibi.png";

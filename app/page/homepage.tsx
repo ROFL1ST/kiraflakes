@@ -160,7 +160,7 @@ export default function Hero() {
 
                             {/* DISCORD */}
                             <motion.a
-                              href="https://discord.com/users/your-id"
+                              href="https://discord.com/users/812705923352625174"
                               target="_blank"
                               whileHover={{ scale: 1.2, y: -5 }}
                               whileTap={{ scale: 0.9 }}
@@ -179,7 +179,7 @@ export default function Hero() {
                             </motion.a>
                             {/* TWITTER / X */}
                             <motion.a
-                              href="https://twitter.com/your-username"
+                              href="https://twitter.com/@kiravflakes"
                               target="_blank"
                               whileHover={{ scale: 1.2, y: -5 }}
                               whileTap={{ scale: 0.9 }}
