@@ -14,6 +14,11 @@ import CSK2 from "../assets/ColouredSketch1.png";
 import CSK3 from "../assets/ColouredSketch2.png";
 import Ils1 from "../assets/ilustration.png";
 import Ils2 from "../assets/Illustration3x.png";
+import HNY from "../assets/Showcase/HNY.png";
+import Orca from "../assets/Showcase/Orca.png";
+import Kai1 from "../assets/Showcase/Kai_Comm21.png";
+import Haru from "../assets/Showcase/Haru.png";
+
 
 import { useState } from "react";
 
@@ -21,9 +26,9 @@ export default function Pricing() {
   const [index, setIndex] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [images, setImages] = useState<(StaticImageData | string)[]>([]);
-  const gallery1 = [Ils1, Ils2, CSK1, CSK2, CSK3];
+  const gallery1 = [Ils1, Ils2, CSK1, CSK2, CSK3, Kai1, HNY, Haru];
   const gallery2 = [Chibi, Chibi1, Chibi2, Chibi3, Chibi4, Chibi5, Chibi6];
-  const gallery3 = [Sheet];
+  const gallery3 = [Sheet, Orca];
   const openGallery = (gallery: (StaticImageData | string)[]) => {
     setImages(gallery);
     setIndex(0);

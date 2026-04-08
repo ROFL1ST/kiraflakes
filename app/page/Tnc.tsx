@@ -189,18 +189,16 @@ export default function Tnc() {
 
               {/* IMAGE 2 */}
               <div className="overflow-hidden rounded-lg">
-                <motion.div
+                <motion.video
+                  src="/Zetanap.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   whileHover={{ scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 200 }}
-                >
-                  <Image
-                    width={300}
-                    height={300}
-                    src={Ilust2} // ganti dengan image kamu
-                    alt="gallery-2"
-                    className="w-full object-cover object-center"
-                  />
-                </motion.div>
+                  className="w-full object-cover object-center"
+                />
               </div>
             </div>
           </div>

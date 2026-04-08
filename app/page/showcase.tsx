@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import {useState } from "react";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import Tama from "../assets/Tama.png";
-import Bust1 from "../assets/bustup1.png";
-import Bust2 from "../assets/bustup2.png";
+import Kai1 from "../assets/Showcase/Kai_Comm21.png";
+import HNY from "../assets/Showcase/HNY.png";
 import Chibi1 from "../assets/Chibi.png";
 import Chibi2 from "../assets/Chibi1.png";
-import Headshot from "../assets/Headshotchibi.png";
+import Porto1 from "../assets/Showcase/Portfo1.png";
+import Porto2 from "../assets/Showcase/Portfo2.png";
 import Sketch from "../assets/ColouredSketch.png";
 
 
@@ -84,12 +84,12 @@ export default function Showcase() {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 className="cursor-pointer"
-                onClick={() => setSelectedImage(Bust1)}
+                onClick={() => setSelectedImage(Kai1)}
               >
                 <Image
                   width={600}
                   height={600}
-                  src={Bust1}
+                  src={Kai1}
                   alt="gallery"
                   className="w-full object-cover h-full object-center block rounded-lg"
                 />
@@ -99,12 +99,12 @@ export default function Showcase() {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 className="cursor-pointer"
-                onClick={() => setSelectedImage(Headshot)}
+                onClick={() => setSelectedImage(Porto1)}
               >
                 <Image
                   width={600}
                   height={600}
-                  src={Headshot}
+                  src={Porto1}
                   alt="gallery"
                   className="w-full h-full object-cover object-center block"
                 />
@@ -116,12 +116,12 @@ export default function Showcase() {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 className="cursor-pointer"
-                onClick={() => setSelectedImage(Bust2)}
+                onClick={() => setSelectedImage(Porto2)}
               >
                 <Image
                   width={600}
                   height={600}
-                  src={Bust2}
+                  src={Porto2}
                   alt="gallery"
                   className="w-full object-cover h-full object-center block rounded-lg"
                 />
