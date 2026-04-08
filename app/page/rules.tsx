@@ -16,7 +16,7 @@ export default function Rules() {
       ],
     },
     {
-      title: "I will not draw.",
+      title: "I will not draw (or Discuss first).",
       desc: [
         { text: "NSFW", type: "no" },
         { text: "Furry", type: "no" },
