@@ -12,7 +12,7 @@ type PricingCard = {
   title: string
   subtitle: string
   description: string
-  image_url: string
+  image_urls: string[] // ← DIUBAH: dari image_url ke image_urls
   prices: PriceItem[]
   note: string
   popular: boolean
@@ -31,14 +31,14 @@ export default function PricingForm({ initialData, onSave, onCancel }: PricingFo
     title: initialData?.title || '',
     subtitle: initialData?.subtitle || '',
     description: initialData?.description || '',
-    image_url: initialData?.image_url || '',
+    image_urls: initialData?.image_urls?.length ? initialData.image_urls : [''], // ← DIUBAH
     prices: initialData?.prices?.length ? initialData.prices : [{ label: '', price: '' }],
     note: initialData?.note || '',
     popular: initialData?.popular || false,
     button_color: initialData?.button_color || '#E36464',
     sort_order: initialData?.sort_order || 0,
   })
-  
+
   const [saving, setSaving] = useState(false)
 
   const handlePriceChange = (index: number, field: keyof PriceItem, value: string) => {
@@ -56,11 +56,34 @@ export default function PricingForm({ initialData, onSave, onCancel }: PricingFo
     setFormData(prev => ({ ...prev, prices: newPrices }))
   }
 
+  // ← BARU: handler untuk image_urls
+  const handleImageUpdate = (index: number, url: string) => {
+    const updated = [...formData.image_urls]
+    updated[index] = url
+    setFormData(prev => ({ ...prev, image_urls: updated }))
+  }
+
+  const addImage = () => {
+    setFormData(prev => ({ ...prev, image_urls: [...prev.image_urls, ''] }))
+  }
+
+  const removeImage = (index: number) => {
+    const updated = formData.image_urls.filter((_, i) => i !== index)
+    // Pastikan minimal ada 1 slot
+    setFormData(prev => ({ ...prev, image_urls: updated.length > 0 ? updated : [''] }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
+    // Filter image_urls yang kosong sebelum disimpan
+    const cleanData = {
+      ...initialData,
+      ...formData,
+      image_urls: formData.image_urls.filter(url => url.trim() !== ''),
+    }
     try {
-      await onSave({ ...initialData, ...formData })
+      await onSave(cleanData)
     } finally {
       setSaving(false)
     }
@@ -68,7 +91,7 @@ export default function PricingForm({ initialData, onSave, onCancel }: PricingFo
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-6 space-y-6">
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
@@ -104,56 +127,86 @@ export default function PricingForm({ initialData, onSave, onCancel }: PricingFo
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Gambar Utama */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Gambar Cover</label>
-          <ImageUploader 
-            currentUrl={formData.image_url}
-            onUpload={(url) => setFormData(prev => ({ ...prev, image_url: url }))}
-            folder="pricing"
-          />
+      {/* ← DIUBAH: Multi-image uploader */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Gambar Ilustrasi
+            <span className="ml-1.5 text-xs text-gray-400 font-normal">({formData.image_urls.filter(u => u).length} gambar)</span>
+          </label>
+          <button
+            type="button"
+            onClick={addImage}
+            className="text-xs flex items-center gap-1 text-[#E36464] font-medium hover:underline"
+          >
+            <PlusIcon className="w-3.5 h-3.5" /> Tambah Gambar
+          </button>
         </div>
 
-        {/* Prices List */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Daftar Harga</label>
-          <div className="space-y-3">
-            {formData.prices.map((item, idx) => (
-              <div key={idx} className="flex gap-2 items-center">
-                <input
-                  type="text"
-                  value={item.label}
-                  onChange={(e) => handlePriceChange(idx, 'label', e.target.value)}
-                  placeholder="Bust-up"
-                  className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-800 outline-none focus:border-[#E36464]"
-                  required
-                />
-                <input
-                  type="text"
-                  value={item.price}
-                  onChange={(e) => handlePriceChange(idx, 'price', e.target.value)}
-                  placeholder="65k / $15"
-                  className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-800 outline-none focus:border-[#E36464]"
-                  required
-                />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {formData.image_urls.map((url, idx) => (
+            <div key={idx} className="relative group">
+              <ImageUploader
+                currentUrl={url}
+                onUpload={(newUrl) => handleImageUpdate(idx, newUrl)}
+                folder="pricing"
+                inputId={`pricing-image-${idx}`} // ← id unik per slot
+              />
+              {/* Tombol hapus slot — hanya muncul jika ada lebih dari 1 slot */}
+              {formData.image_urls.length > 1 && (
                 <button
                   type="button"
-                  onClick={() => removePrice(idx)}
-                  className="text-red-400 hover:text-red-600 p-1"
+                  onClick={() => removeImage(idx)}
+                  className="absolute -top-2 -right-2 z-10 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center shadow hover:bg-red-600 transition opacity-0 group-hover:opacity-100"
+                  title="Hapus slot gambar ini"
                 >
-                  <TrashIcon className="w-5 h-5" />
+                  <TrashIcon className="w-3 h-3" />
                 </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addPrice}
-              className="text-sm flex items-center gap-1 text-[#E36464] font-medium hover:underline"
-            >
-              <PlusIcon className="w-4 h-4" /> Tambah Harga
-            </button>
-          </div>
+              )}
+              <p className="text-xs text-gray-400 mt-1 text-center">Gambar {idx + 1}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Prices List — tidak berubah */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Daftar Harga</label>
+        <div className="space-y-3">
+          {formData.prices.map((item, idx) => (
+            <div key={idx} className="flex gap-2 items-center">
+              <input
+                type="text"
+                value={item.label}
+                onChange={(e) => handlePriceChange(idx, 'label', e.target.value)}
+                placeholder="Bust-up"
+                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-800 outline-none focus:border-[#E36464]"
+                required
+              />
+              <input
+                type="text"
+                value={item.price}
+                onChange={(e) => handlePriceChange(idx, 'price', e.target.value)}
+                placeholder="65k / $15"
+                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-800 outline-none focus:border-[#E36464]"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => removePrice(idx)}
+                className="text-red-400 hover:text-red-600 p-1"
+              >
+                <TrashIcon className="w-5 h-5" />
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addPrice}
+            className="text-sm flex items-center gap-1 text-[#E36464] font-medium hover:underline"
+          >
+            <PlusIcon className="w-4 h-4" /> Tambah Harga
+          </button>
         </div>
       </div>
 
@@ -168,7 +221,6 @@ export default function PricingForm({ initialData, onSave, onCancel }: PricingFo
             className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 outline-none focus:border-[#E36464] focus:ring-1 focus:ring-[#E36464]"
           />
         </div>
-
         <div className="flex items-center gap-6">
           <label className="flex items-center gap-2 cursor-pointer mt-6">
             <input

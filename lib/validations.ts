@@ -22,7 +22,7 @@ export const pricingCardSchema = z.object({
   title: z.string().min(1, 'Title wajib diisi'),
   subtitle: z.string().min(1, 'Subtitle wajib diisi'),
   description: z.string().optional(),
-  image_url: z.string().optional(),
+  image_urls: z.array(z.string()).default([]), // ← DIUBAH: dari image_url string ke image_urls array
   prices: z.array(priceItemSchema).min(1, 'Minimal 1 harga'),
   note: z.string().optional(),
   popular: z.boolean().default(false),

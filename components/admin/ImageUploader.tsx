@@ -3,17 +3,15 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
-import { PhotoIcon, XMarkIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline'
+import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import imageCompression from 'browser-image-compression'
 
 interface ImageUploaderProps {
-  /** URL gambar saat ini (existing) */
   currentUrl?: string
-  /** Dipanggil setelah upload selesai dengan URL publik */
   onUpload: (url: string) => void
-  /** Folder di Supabase Storage (default: 'general') */
   folder?: string
   className?: string
+  inputId?: string // ← BARU: agar tiap instance punya id unik
 }
 
 export default function ImageUploader({
@@ -21,6 +19,7 @@ export default function ImageUploader({
   onUpload,
   folder = 'general',
   className = '',
+  inputId = 'image-upload-input', // ← default fallback
 }: ImageUploaderProps) {
   const [preview, setPreview] = useState<string | null>(currentUrl ?? null)
   const [uploading, setUploading] = useState(false)
@@ -38,16 +37,14 @@ export default function ImageUploader({
     setUploading(true)
 
     try {
-      // Kompresi gambar
       const options = {
-        maxSizeMB: 2, // Kompres hingga max 2MB (masih bagus untuk desktop)
+        maxSizeMB: 2,
         maxWidthOrHeight: 1920,
         useWebWorker: true,
       }
-      
+
       const compressedFile = await imageCompression(file, options)
 
-      // Preview lokal setelah dikompresi
       const reader = new FileReader()
       reader.onload = (e) => setPreview(e.target?.result as string)
       reader.readAsDataURL(compressedFile)
@@ -90,13 +87,14 @@ export default function ImageUploader({
 
   return (
     <div className={`relative ${className}`}>
+      {/* ← DIUBAH: pakai inputId sebagai id */}
       <input
         ref={inputRef}
         type="file"
         accept="image/*"
         onChange={handleInputChange}
         className="sr-only"
-        id="image-upload-input"
+        id={inputId}
       />
 
       {preview ? (
@@ -136,8 +134,9 @@ export default function ImageUploader({
           )}
         </div>
       ) : (
+        // ← DIUBAH: htmlFor pakai inputId
         <label
-          htmlFor="image-upload-input"
+          htmlFor={inputId}
           onDrop={handleDrop}
           onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
           onDragLeave={() => setDragOver(false)}

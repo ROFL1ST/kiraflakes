@@ -71,7 +71,7 @@ create table if not exists pricing_cards (
   title text not null,
   subtitle text not null,
   description text,
-  image_url text,
+  image_urls jsonb not null default '[]'::jsonb,  -- ← DIUBAH: dari image_url text ke image_urls jsonb (array)
   prices jsonb not null default '[]'::jsonb,
   note text,
   popular boolean default false,

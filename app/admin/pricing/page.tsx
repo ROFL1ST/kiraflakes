@@ -10,7 +10,7 @@ type PricingCard = {
   title: string
   subtitle: string
   description: string
-  image_url: string
+  image_urls: string[] // ← DIUBAH
   prices: { label: string; price: string }[]
   note: string
   popular: boolean
@@ -21,13 +21,10 @@ type PricingCard = {
 export default function PricingAdminPage() {
   const [cards, setCards] = useState<PricingCard[]>([])
   const [loading, setLoading] = useState(true)
-  
   const [editingCard, setEditingCard] = useState<PricingCard | null>(null)
   const [isAdding, setIsAdding] = useState(false)
 
-  useEffect(() => {
-    fetchCards()
-  }, [])
+  useEffect(() => { fetchCards() }, [])
 
   const fetchCards = async () => {
     try {
@@ -44,11 +41,7 @@ export default function PricingAdminPage() {
   const handleSave = async (data: any) => {
     const isEdit = !!data.id
     const method = isEdit ? 'PUT' : 'POST'
-
-    if (!isEdit) {
-      data.sort_order = cards.length
-    }
-
+    if (!isEdit) data.sort_order = cards.length
     try {
       const res = await fetch('/api/pricing', {
         method,
@@ -67,12 +60,9 @@ export default function PricingAdminPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Hapus card pricing ini?')) return
-
     try {
       const res = await fetch(`/api/pricing?id=${id}`, { method: 'DELETE' })
-      if (res.ok) {
-        setCards(cards.filter(c => c.id !== id))
-      }
+      if (res.ok) setCards(cards.filter(c => c.id !== id))
     } catch (err) {
       console.error(err)
     }
@@ -96,10 +86,7 @@ export default function PricingAdminPage() {
       </div>
 
       {isAdding && (
-        <PricingForm
-          onSave={handleSave}
-          onCancel={() => setIsAdding(false)}
-        />
+        <PricingForm onSave={handleSave} onCancel={() => setIsAdding(false)} />
       )}
 
       {editingCard && (
@@ -113,9 +100,9 @@ export default function PricingAdminPage() {
       {!isAdding && !editingCard && (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {cards.map((card) => (
-            <motion.div 
-              layout 
-              key={card.id} 
+            <motion.div
+              layout
+              key={card.id}
               className={`bg-white p-6 rounded-2xl border ${card.popular ? 'border-[#E36464] ring-1 ring-[#E36464]' : 'border-gray-200'} shadow-sm relative`}
             >
               {card.popular && (
@@ -123,33 +110,53 @@ export default function PricingAdminPage() {
                   Most Popular
                 </span>
               )}
-              
+
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{card.subtitle}</p>
                   <h3 className="text-xl font-bold text-gray-900">{card.title}</h3>
                 </div>
                 <div className="flex gap-2">
-                  <button 
-                    onClick={() => setEditingCard(card)}
-                    className="p-1.5 text-blue-500 hover:bg-blue-50 rounded transition"
-                  >
+                  <button onClick={() => setEditingCard(card)} className="p-1.5 text-blue-500 hover:bg-blue-50 rounded transition">
                     <PencilIcon className="w-4 h-4" />
                   </button>
-                  <button 
-                    onClick={() => handleDelete(card.id)}
-                    className="p-1.5 text-red-500 hover:bg-red-50 rounded transition"
-                  >
+                  <button onClick={() => handleDelete(card.id)} className="p-1.5 text-red-500 hover:bg-red-50 rounded transition">
                     <TrashIcon className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-              
+
               <p className="text-sm text-gray-500 mb-4 line-clamp-2">{card.description}</p>
-              
-              {card.image_url && (
-                <div className="mb-4 aspect-[4/3] rounded-lg overflow-hidden border border-gray-100">
-                  <img src={card.image_url} alt={card.title} className="w-full h-full object-cover" />
+
+              {/* ← DIUBAH: tampilkan image_urls sebagai mini grid */}
+              {card.image_urls?.length > 0 && (
+                <div className={`mb-4 gap-1.5 rounded-lg overflow-hidden ${
+                  card.image_urls.length === 1
+                    ? 'grid grid-cols-1'
+                    : card.image_urls.length === 2
+                    ? 'grid grid-cols-2'
+                    : 'grid grid-cols-2'
+                }`}>
+                  {card.image_urls.slice(0, 4).map((url, idx) => (
+                    <div
+                      key={idx}
+                      className={`relative overflow-hidden rounded border border-gray-100 ${
+                        card.image_urls.length === 1 ? 'aspect-[4/3]' : 'aspect-square'
+                      }`}
+                    >
+                      <img
+                        src={url}
+                        alt={`${card.title} ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Badge "+N" jika ada lebih dari 4 gambar */}
+                      {idx === 3 && card.image_urls.length > 4 && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                          <span className="text-white font-bold text-sm">+{card.image_urls.length - 4}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
 
@@ -164,9 +171,9 @@ export default function PricingAdminPage() {
             </motion.div>
           ))}
           {cards.length === 0 && (
-             <div className="col-span-full text-gray-500 text-sm py-12 text-center bg-gray-50 rounded-xl border border-dashed border-gray-200">
-               Belum ada data Pricing Cards.
-             </div>
+            <div className="col-span-full text-gray-500 text-sm py-12 text-center bg-gray-50 rounded-xl border border-dashed border-gray-200">
+              Belum ada data Pricing Cards.
+            </div>
           )}
         </div>
       )}
