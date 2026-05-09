@@ -6,14 +6,6 @@ import Ilust2 from "../assets/ilust2.png";
 export default function Tnc() {
   return (
     <>
-      {/* <motion.section
-        id="Tnc"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="text-white bg-[#E36464] body-font"
-      > */}
       <section id="Tnc" className="text-white body-font bg-[#E36464]">
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
           <div className="flex flex-col text-center w-full mb-20">
@@ -31,9 +23,9 @@ export default function Tnc() {
                   <svg
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
@@ -41,7 +33,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm mb-1 tracking-wider">
                     General
                   </h2>
                   <p className="leading-relaxed">
@@ -62,9 +54,9 @@ export default function Tnc() {
                   <svg
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
@@ -72,7 +64,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm mb-1 tracking-wider">
                     Refunds
                   </h2>
                   <p className="leading-relaxed">
@@ -90,9 +82,9 @@ export default function Tnc() {
                   <svg
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
@@ -101,7 +93,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm mb-1 tracking-wider">
                     Revisions
                   </h2>
                   <p className="leading-relaxed">
@@ -123,9 +115,9 @@ export default function Tnc() {
                   <svg
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
@@ -134,7 +126,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm mb-1 tracking-wider">
                     Usage
                   </h2>
                   <p className="leading-relaxed">
@@ -148,9 +140,9 @@ export default function Tnc() {
                   <svg
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
@@ -159,7 +151,7 @@ export default function Tnc() {
                   </svg>
                 </div>
                 <div className="grow pl-4">
-                  <h2 className="font-medium title-font text-sm text-white0 mb-1 tracking-wider">
+                  <h2 className="font-medium title-font text-sm mb-1 tracking-wider">
                     Deadlines and Delivery
                   </h2>
                   <p className="leading-relaxed">
@@ -171,23 +163,21 @@ export default function Tnc() {
               </div>
             </div>
             <div className="lg:w-3/5 md:w-1/2 flex flex-col gap-4">
-              {/* IMAGE 1 */}
               <div className="overflow-hidden rounded-lg">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 200 }}
                 >
                   <Image
+                    priority
                     width={600}
                     height={600}
                     src={Headshot}
-                    alt="gallery"
+                    alt="Headshot chibi illustration"
                     className="w-full object-cover object-center"
                   />
                 </motion.div>
               </div>
-
-              {/* IMAGE 2 */}
               <div className="overflow-hidden rounded-lg">
                 <motion.video
                   src="/Zetanap.mp4"
@@ -204,7 +194,6 @@ export default function Tnc() {
           </div>
         </div>
       </section>
-      {/* </motion.section> */}
     </>
   );
 }
