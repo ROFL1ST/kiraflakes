@@ -12,7 +12,7 @@ type PricingCardProps = {
   subtitle: string;
   description: string;
   prices: PriceItem[];
-  image: StaticImageData;
+  image: StaticImageData | string;
   note?: string;
   buttonColor?: string;
   popular?: boolean;

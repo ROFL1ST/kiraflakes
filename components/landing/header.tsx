@@ -5,7 +5,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
-import Tamalogo from "../assets/TamaIcon.jpg";
+import Tamalogo from "@/app/assets/TamaIcon.jpg";
 
 const navigation = [
   { name: "Rules", href: "#rules" },

@@ -1,34 +1,15 @@
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import PricingCard from "../components/pricingcard";
-import Sheet from "../assets/sheet.jpg";
-import Chibi from "../assets/Chibi.png";
-import Chibi1 from "../assets/Chibi1.png";
-import Chibi3 from "../assets/Chibi3.png";
-import Chibi2 from "../assets/FullBodyChibi.png";
-import Chibi4 from "../assets/FullBodyChibi1.png";
-import Chibi5 from "../assets/FullBodyChibi2.png";
-import Chibi6 from "../assets/FullBodyChibi2x1.png";
-import CSK1 from "../assets/ColouredSketch.png";
-import CSK2 from "../assets/ColouredSketch1.png";
-import CSK3 from "../assets/ColouredSketch2.png";
-import Ils1 from "../assets/ilustration.png";
-import Ils2 from "../assets/Illustration3x.png";
-import HNY from "../assets/Showcase/HNY.png";
-import Orca from "../assets/Showcase/Orca.png";
-import Kai1 from "../assets/Showcase/Kai_Comm21.png";
-import Haru from "../assets/Showcase/Haru.png";
+import PricingCard from "../pricingcard";
 
 
 import { useState } from "react";
 
-export default function Pricing() {
+export default function Pricing({ data }: { data: any[] }) {
   const [index, setIndex] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [images, setImages] = useState<(StaticImageData | string)[]>([]);
-  const gallery1 = [Ils1, Ils2, CSK1, CSK2, CSK3, Kai1, HNY, Haru];
-  const gallery2 = [Chibi, Chibi1, Chibi2, Chibi3, Chibi4, Chibi5, Chibi6];
-  const gallery3 = [Sheet, Orca];
   const openGallery = (gallery: (StaticImageData | string)[]) => {
     setImages(gallery);
     setIndex(0);
@@ -123,46 +104,20 @@ export default function Pricing() {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <PricingCard
-              title="Illustration Showcase"
-              subtitle="ILLUSTRATION"
-              description="I will draw your character >:3"
-              image={Ils1}
-              note="Background price depends on complexity."
-              prices={[
-                { label: "Headshot", price: "65k / $15" },
-                { label: "Bust-up", price: "100k / $20" },
-                { label: "Half Body", price: "135k / $23" },
-                { label: "Thigh-up", price: "175k / $35" },
-                { label: "Full Body", price: "200k / $40" },
-              ]}
-              onClick={() => openGallery(gallery1)}
-            />
-            <PricingCard
-              title="Illustration Showcase"
-              subtitle="CHIBIS!!!!!"
-              description="I love drawing chibis and I can make one for you!!"
-              image={Chibi}
-              popular
-              buttonColor="#6366F1"
-              prices={[
-                { label: "Bust-up", price: "40k / $10" },
-                { label: "Full Body", price: "65k / $15" },
-              ]}
-              onClick={() => openGallery(gallery2)}
-            />
-            <PricingCard
-              title="Illustration Showcase"
-              subtitle="CHARACTER SHEET"
-              description="a full body of your character with 1-2 props and a full body chibi of ur chara !!"
-              image={Sheet}
-              // buttonColor="#9CA3AF"
-              prices={[
-                { label: "Local", price: "250k" },
-                { label: "International", price: "$50" },
-              ]}
-              onClick={() => openGallery(gallery3)}
-            />
+            {data.map((item, idx) => (
+              <PricingCard
+                key={idx}
+                title={item.title}
+                subtitle={item.subtitle}
+                description={item.description}
+                image={item.image_url}
+                note={item.note}
+                prices={item.prices}
+                popular={item.popular}
+                buttonColor={item.button_color}
+                onClick={() => openGallery([item.image_url])} // Gallery dinamis bisa di-improve nantinya
+              />
+            ))}
           </div>
         </div>
       </section>

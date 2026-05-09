@@ -1,29 +1,21 @@
+"use client";
 import Image from "next/image";
-import Gaci from "../assets/ganciyoko.png";
+import Gaci from "@/app/assets/ganciyoko.png";
 import { motion } from "framer-motion";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
-export default function Rules() {
+export default function Rules({ data }: { data: any[] }) {
+  const okRules = data.filter(r => r.type === 'ok');
+  const noRules = data.filter(r => r.type === 'no');
+
   const items = [
     {
       title: "I will draw.",
-      desc: [
-        { text: "Anime Artstyle", type: "ok" },
-        { text: "Couples / Yumeship", type: "ok" },
-        { text: "Kemonomimi / Nekomimi", type: "ok" },
-        { text: "Any Gender", type: "ok" },
-        { text: "Complex Character", type: "ok" },
-      ],
+      desc: okRules.map(r => ({ text: r.text, type: r.type })),
     },
     {
       title: "I will not draw (or Discuss first).",
-      desc: [
-        { text: "NSFW", type: "no" },
-        { text: "Furry", type: "no" },
-        { text: "Mecha / Heavy Armor", type: "no" },
-        { text: "Muscular Characters", type: "no" },
-        { text: "Real Life People (will be simplified)", type: "no" },
-      ],
+      desc: noRules.map(r => ({ text: r.text, type: r.type })),
     },
   ];
   return (
